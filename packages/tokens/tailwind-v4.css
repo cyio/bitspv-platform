@@ -1,0 +1,37 @@
+/*
+ * Tailwind v4 映射。
+ *
+ * v3 用 `tailwind-preset.cjs`，v4 用这个文件（`@theme inline`）。
+ * 只映射**颜色**：fonts 与 radius 在 tokens.css 里已经是同样的变量名，
+ * 在这里再声明一次会和它自己递归（`--font-sans: var(--font-sans)`）。
+ *
+ * 用法：
+ *   @import '@bitspv/tokens/tokens.css';   ← 先，定义 :root 变量
+ *   @import '@bitspv/tokens/tailwind-v4.css';
+ *
+ * 注意：tokens.css 会在 :root 上定义 --paper / --ink / --accent 等。
+ * 如果你的应用已经用了同名但不同含义的变量（例如 shadcn 的 --accent 是弱底色，
+ * 而品牌 --accent 是动作色），**必须先重命名你自己那个**，否则会被覆盖。
+ */
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-seal: var(--seal);
+  --color-seal-text: var(--seal-text);
+  --color-seal-soft: var(--seal-soft);
+  --color-seal-border: var(--seal-border);
+  --color-danger: var(--danger);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-warn-border: var(--warn-border);
+  --color-bitcoin: var(--bitcoin);
+}

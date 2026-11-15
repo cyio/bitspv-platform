@@ -1,6 +1,6 @@
 {
   "name": "@bitspv/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "BitSPV 品牌 token：颜色/字体/间距/圆角/动效的唯一来源，产出 CSS 变量与 Tailwind preset。",
   "type": "module",
   "license": "MIT",
@@ -17,12 +17,14 @@
     "./tokens.json": "./tokens.json",
     "./tokens.css": "./dist/tokens.css",
     "./tailwind-preset.cjs": "./tailwind-preset.cjs",
-    "./build": "./src/build.mjs"
+    "./build": "./src/build.mjs",
+    "./tailwind-v4.css": "./tailwind-v4.css"
   },
   "files": [
     "tokens.json",
     "dist/tokens.css",
     "tailwind-preset.cjs",
+    "tailwind-v4.css",
     "src/build.mjs",
     "src/audit.mjs",
     "bin/cli.mjs",

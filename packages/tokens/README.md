@@ -2,7 +2,7 @@
 
 BitSPV 品牌 token 的唯一来源。颜色、字体、间距、圆角、阴影、动效都在 `tokens.json` 里；CSS 和 Tailwind preset 都是它的产物，**不要手改产物**。
 
-## 用在一个 Tailwind 应用里（Vue / React 通用）
+## 用在一个 Tailwind **v3** 应用里
 
 ```js
 // tailwind.config.js
@@ -13,6 +13,20 @@ export default {
   content: ['./src/**/*.{vue,ts,tsx}'],
 }
 ```
+
+## 用在一个 Tailwind **v4** 应用里
+
+```css
+/* 入口 CSS，顺序不能反 */
+@import '@bitspv/tokens/tokens.css';
+@import '@bitspv/tokens/tailwind-v4.css';
+```
+
+v4 只映射颜色。fonts 与 radius 在 `tokens.css` 里已经是同名变量，在 `@theme` 里再声明一次会自我递归。
+
+⚠️ **同名撞车**：`tokens.css` 会在 `:root` 定义 `--paper` / `--ink` / `--rule` / `--accent` 等。如果你的应用已经用了同名但不同含义的变量（典型是 shadcn 的 `--accent` 表示弱底色，而品牌 `--accent` 是动作色），**必须先重命名你自己的那个**，否则会被静默覆盖。
+
+本机实测：BitSPV Post 有 17 个同名变量，其中 11 个值与品牌**逐字节一致**（明暗两套都对），只有 `--accent` 语义冲突。
 
 ```css
 /* 入口 CSS，放在 tailwind 指令之前 */
