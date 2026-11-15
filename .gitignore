@@ -1,4 +1,5 @@
 node_modules/
 .DS_Store
 *.log
+.release/
 # dist/ 是发布产物，要提交（package.json 的 files 里引用了它）

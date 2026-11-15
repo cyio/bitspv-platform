@@ -4,12 +4,17 @@
   "type": "module",
   "description": "BitSPV 共享基建：品牌 token 与后续的 worker / BRC-100 共享包。",
   "packageManager": "pnpm@10.6.4",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cyio/bitspv-platform.git"
+  },
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "build": "pnpm -C packages/tokens run build && pnpm -C packages/tokens run preset",
     "check": "node scripts/check-parity.mjs",
-    "audit": "node packages/tokens/bin/cli.mjs audit"
+    "audit": "node packages/tokens/bin/cli.mjs audit",
+    "release": "node scripts/release.mjs"
   }
 }

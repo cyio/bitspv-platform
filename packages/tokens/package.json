@@ -4,6 +4,11 @@
   "description": "BitSPV 品牌 token：颜色/字体/间距/圆角/动效的唯一来源，产出 CSS 变量与 Tailwind preset。",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cyio/bitspv-platform.git",
+    "directory": "packages/tokens"
+  },
   "bin": {
     "bitspv-tokens": "./bin/cli.mjs"
   },
