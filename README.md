@@ -21,19 +21,24 @@ pnpm check          # dist 是否与 tokens.json 同步；正文是否与主站�
 pnpm audit <dirs>   # 各应用离品牌 token 有多远（只读）
 ```
 
-## 分发方式：**未定**
+## 分发方式
 
-`pnpm` 在当前机器上还没登录 npm（`npm whoami` → E401），所以包还只在本地。
+GitHub Release tarball。发版：
 
-三个选项，等决策后再接线：
+```bash
+pnpm release            # 干跑
+pnpm release --publish  # 构建 + 校验 + 打包 + tag + release + 上传
+```
 
-| 方案 | 优点 | 代价 |
-|---|---|---|
-| 发布到 npm（公开） | 标准，Vercel / Workers 直接可用，无需额外 token | token 是公开的（本来就在公开 CSS 里） |
-| `github:cyio/bitspv-tokens#v0.1.0` | 不用 registry、不用 token（仓库公开即可） | 安装时走 git，稍慢；每个包一个仓库 |
-| 各应用 vendor 一份生成的 CSS | 构建零网络依赖 | 会出现副本，需要 `sync` + check 防漂移 |
+应用里写：
 
-**在这三个里选一个之前，不要改任何应用的引入方式。** 半接线的状态比现在更难收拾。
+```json
+"@bitspv/tokens": "https://github.com/cyio/bitspv-platform/releases/download/v0.1.1/bitspv-tokens-0.1.1.tgz"
+```
+
+不需要 registry、不需要 token，Vercel / Workers 构建机零凭证。为什么不用 npm：见 `bitspv-workspace/docs/decisions.md` W-005。
+
+已接入：`web`（0.1.1，零视觉变化）。其余应用的状态见 `bitspv-workspace/docs/shared-infra.md`。
 
 ## 当前基线
 

@@ -177,3 +177,22 @@ node packages/tokens/bin/cli.mjs audit web=~/Projects/Personal/bitspv \
   send=~/Projects/bsv-apps/bitspv-send vault=~/Projects/bsv-apps/bitspv-vault \
   post=~/Projects/bsv-apps/bitspv-post/frontend
 ```
+
+## 接入时踩到的真问题：post 的 `--accent` 语义冲突
+
+post 自己定义了 17 个和品牌同名的变量，其中 **11 个值与品牌逐字节一致**（明暗两套都对）：
+
+`--paper` `--paper-2` `--ink` `--ink-2` `--ink-3` `--rule` `--rule-strong` `--seal` `--seal-text` `--seal-soft` `--seal-border`
+
+说明它其实已经是这套 token 的独立分叉，而不是"另一套配色"。
+
+但 `--accent` 冲突：post 拿它当 **shadcn 的弱底面色**（`var(--paper-2)`），品牌拿它当**动作色**（`#067a52`）。直接 `@import` 品牌 `tokens.css` 会把这 16 处引用悄悄改成绿色。
+
+这 16 处全在 `components/ui/*`（shadcn CLI 生成的 UI 原语），重命名它们等于每次升级 shadcn 都要重做一次。
+
+**结论**：post 的接入不是机械替换，需要先决定两件事之一——
+
+1. 把 post 的 `--accent` 改名为 `--accent-surface`，接受 shadcn 原语的小幅改动；
+2. 或者 post 不引用品牌 `tokens.css`，只把 `--copper` 改名成 `--accent` 并删除重复的 11 个值，走"值对齐但变量各管各的"。
+
+在定这个之前，post 保持现状（78%，视觉本来就没跑偏）。
