@@ -33,7 +33,7 @@ pnpm release --publish  # 构建 + 校验 + 打包 + tag + release + 上传
 应用里写：
 
 ```json
-"@bitspv/tokens": "https://github.com/cyio/bitspv-platform/releases/download/v0.1.1/bitspv-tokens-0.1.1.tgz"
+"@bitspv/tokens": "https://raw.githubusercontent.com/cyio/bitspv-platform/v0.1.2/packages/tokens/dist/bitspv-tokens-0.1.2.tgz"
 ```
 
 不需要 registry、不需要 token，Vercel / Workers 构建机零凭证。为什么不用 npm：见 `bitspv-workspace/docs/decisions.md` W-005。
