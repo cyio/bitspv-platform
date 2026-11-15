@@ -22,6 +22,7 @@ const SKIP_DIRS = new Set([
   'coverage',
   'dev-dist',
   'test-results',
+  'design', // 设计提案页，故意硬编码示例色，不是线上代码
 ])
 
 const SCAN_EXT = new Set(['.css', '.vue', '.tsx', '.ts', '.jsx', '.js', '.mjs', '.html', '.svelte'])
@@ -46,7 +47,8 @@ function* walk(dir) {
       if (SKIP_DIRS.has(e.name)) continue
       yield* walk(p)
     } else if (SCAN_EXT.has(path.extname(e.name))) {
-      if (e.name === 'stats.html') continue // rollup 可视化产物
+      // 生成物不算硬编码：tokens.css 里的十六进制就是 token 本身
+      if (e.name === 'stats.html' || e.name === 'tokens.css') continue
       yield p
     }
   }
@@ -164,10 +166,18 @@ export function auditApp(appDir, tokens, label) {
   return result
 }
 
-/** 汇总成一个 0–100 的「贴近度」，方便排序和看趋势 */
+/**
+ * 0–100 的贴近度。故意做成「密度」而不是「比例」，否则 70 个文件里 30 处硬编码
+ * 会和 17 个文件里 155 处硬编码得到差不多的分数。
+ *
+ *   颜色 50%：每文件硬编码色数量，0 处 = 满分，5 处及以上 = 0 分
+ *   变量 30%：引用品牌 token 名的 var() 占比
+ *   圆角 20%：无越界 = 满分
+ */
 export function conformance(r) {
-  const colorScore = r.hex.total === 0 ? 1 : r.hex.brand / r.hex.total
-  const varScore = r.vars.total === 0 ? 0 : r.vars.brand / r.vars.total
+  const density = r.files ? r.hex.total / r.files : 0
+  const colorScore = Math.max(0, 1 - density / 5)
+  const varScore = r.vars.total ? r.vars.brand / r.vars.total : 0
   const radiusScore = r.radius.overContract === 0 ? 1 : 0
   return Math.round((colorScore * 0.5 + varScore * 0.3 + radiusScore * 0.2) * 100)
 }

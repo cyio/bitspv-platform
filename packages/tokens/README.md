@@ -59,4 +59,8 @@ node bin/cli.mjs audit web=~/Projects/Personal/bitspv ['pay=...' ...] [--json]
 - 多少色值品牌里没有（要么加 token，要么删）
 - 多少圆角越界
 
+贴近度 = 颜色密度 50% + 品牌变量占比 30% + 圆角合规 20%。颜色用**密度**（每文件硬编码色数）而不是比例，否则「70 个文件 30 处」会和「17 个文件 155 处」得分接近。
+
+扫描口径：跳过 `dist/`、`design/`（设计提案页，故意硬编码示例色）、`tokens.css`（token 定义本身）。
+
 已知局限：不解析 Tailwind 类名（`rounded-lg`、`bg-[#fff]`），只认 CSS 声明与内联 style。结果是**下限**。
