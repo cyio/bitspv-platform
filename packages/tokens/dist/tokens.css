@@ -11,7 +11,7 @@
   --paper-2: #f3f3f3; /* Secondary surface: inputs, spec caps, skeleton blocks. */
   --ink: #3b3b3b; /* Body and headings. 16.2:1 on light paper. */
   --ink-2: #616161; /* Secondary prose, captions. */
-  --ink-3: #6b6b6b; /* Mono metadata and labels. 4.64:1 on light paper. */
+  --ink-3: #6b6b6b; /* Metadata and labels. 4.64:1 on light paper. */
   --rule: #e5e5e5; /* The only separator. 1px lines instead of shadows and cards. */
   --rule-strong: #cecece; /* Section starts, control borders. */
   --accent: #067a52; /* The only action colour: links, primary buttons, active states. 5.44:1 on light paper. */
@@ -30,7 +30,7 @@
 
   /* type */
   --font-sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
 
   --text-display-hero: 52px;
   --text-display-hero--line-height: 56px;
@@ -133,7 +133,7 @@
   --warn-border: #5c4a1f;
   --bitcoin: #f7931a;
   --font-sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
   --text-display-hero: 52px;
   --text-display-hero--line-height: 56px;
   --text-display-hero--weight: 600;
@@ -224,7 +224,7 @@ html.dark {
   --warn-border: #5c4a1f;
   --bitcoin: #f7931a;
   --font-sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
   --text-display-hero: 52px;
   --text-display-hero--line-height: 56px;
   --text-display-hero--weight: 600;
