@@ -17,9 +17,21 @@ BitSPV 七个产品共用的基建。**这里不放业务代码**，只放「两
 
 ```bash
 pnpm build          # 三个包的构建产物（tokens.css / preset + worker-kit / brc100 的 dist）
-pnpm check          # tokens 逐字节校验 + 两个新包的 typecheck 与测试
+pnpm check          # tokens 逐字节校验 + 公开边界检查 + 两个新包的 typecheck 与测试
 pnpm audit <dirs>   # 各应用离品牌 token 有多远（只读）
 ```
+
+## 公开边界检查
+
+platform 仓为 tokens 的 raw tarball 分发而公开，worker-kit / brc100 同仓而自动公开。这两个包里没有秘密（secret 全在消费方 env 里），公开的是安全机制本身。风险不在今天，而在未来有人往机制层塞入真实凭据或自研密码学后被静默发布。
+
+`scripts/check-public.mjs` 就是那道门，已并入 `pnpm check` 和 `pnpm release`，拦三类东西：
+
+- **硬编码 secret**：PEM / WIF / 64 位 hex 私钥 / 高熵 ASCII 字符串 / 密钥名 + 高熵值。
+- **专有算法**：非白名单加密库导入（`@noble/*`、`elliptic`、`node:crypto` 等）、硬编码密码学常数表。
+- **依赖越界**：运行时 / peer 依赖必须在白名单（当前仅 `@bsv/sdk`），新增依赖要显式改白名单。
+
+要加新依赖或新算法时，先确认它是否真的属于「机制层」，再更新白名单，不要绕过检查。
 
 ## 分发方式
 

@@ -75,6 +75,7 @@ if (pkgName === 'tokens' && hasScript('preset')) {
 if (pkgName === 'tokens') {
   steps.push(['校验产物与源同步', 'node scripts/check-parity.mjs'])
 }
+steps.push(['检查公开边界（无 secret / 专有算法）', 'node scripts/check-public.mjs'])
 steps.push([
   '打包进 dist/（提交进仓库）',
   `npm pack --pack-destination ${JSON.stringify(path.join(PKG_DIR, 'dist'))}`,

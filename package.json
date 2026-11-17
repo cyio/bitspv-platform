@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "pnpm -C packages/tokens run build && pnpm -C packages/tokens run preset && pnpm -C packages/worker-kit run build && pnpm -C packages/brc100 run build",
-    "check": "node scripts/check-parity.mjs && pnpm -C packages/worker-kit run typecheck && pnpm -C packages/worker-kit test && pnpm -C packages/brc100 run typecheck && pnpm -C packages/brc100 test",
+    "check": "node scripts/check-parity.mjs && node scripts/check-public.mjs && pnpm -C packages/worker-kit run typecheck && pnpm -C packages/worker-kit test && pnpm -C packages/brc100 run typecheck && pnpm -C packages/brc100 test",
     "audit": "node packages/tokens/bin/cli.mjs audit",
     "release": "node scripts/release.mjs tokens",
     "release:tokens": "node scripts/release.mjs tokens",
