@@ -10,8 +10,8 @@ BitSPV 七个产品共用的基建。**这里不放业务代码**，只放「两
 | 包 | 状态 | 说明 |
 |---|---|---|
 | `@bitspv/tokens` | ✅ 0.1.3 | 颜色 / 字体 / 间距 / 圆角 / 动效的唯一来源；产出 CSS 变量 + Tailwind preset + 贴近度审计 |
-| `@bitspv/worker-kit` | ✅ 0.1.0（已实现，未发版） | 限速、Durable Object 基类、session、ECDSA 校验、i18n 运行时；85 个测试 |
-| `@bitspv/brc100` | ✅ 0.1.0（已实现，未发版） | wallet-access、relay 客户端、配对/授权流程；59 个测试 |
+| `@bitspv/worker-kit` | ✅ 0.1.0（已发版，send / vault 已接入） | 限速、Durable Object 基类、session、ECDSA 校验、i18n 运行时；85 个测试 |
+| `@bitspv/brc100` | ✅ 0.1.0（已发版，send / vault 已接入） | wallet-access、relay 客户端、配对/授权流程；59 个测试 |
 
 ## 命令
 
