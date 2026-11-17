@@ -1,0 +1,56 @@
+{
+  "name": "@bitspv/brc100",
+  "version": "0.1.0",
+  "description": "BitSPV BRC-100 共享基建：钱包授权入口、relay 传输客户端、配对状态机。只抽机制，不搬业务协议。",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cyio/bitspv-platform.git",
+    "directory": "packages/brc100"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./wallet-access": {
+      "types": "./dist/wallet-access.d.ts",
+      "import": "./dist/wallet-access.js",
+      "default": "./dist/wallet-access.js"
+    },
+    "./relay": {
+      "types": "./dist/relay.d.ts",
+      "import": "./dist/relay.js",
+      "default": "./dist/relay.js"
+    },
+    "./pairing": {
+      "types": "./dist/pairing.d.ts",
+      "import": "./dist/pairing.js",
+      "default": "./dist/pairing.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/*.js",
+    "dist/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@bsv/sdk": "^1.8.10"
+  },
+  "devDependencies": {
+    "@bsv/sdk": "^1.8.10",
+    "typescript": "^5.9.0",
+    "vitest": "^2.1.9"
+  }
+}

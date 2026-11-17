@@ -1,0 +1,73 @@
+{
+  "name": "@bitspv/worker-kit",
+  "version": "0.1.0",
+  "description": "BitSPV Worker 共用基建：限速（DO + 内存滑窗）、session cookie、ECDSA 校验、WebCrypto 与 HTTP helpers、i18n 运行时机制。",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cyio/bitspv-platform.git",
+    "directory": "packages/worker-kit"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./bytes": {
+      "types": "./dist/bytes.d.ts",
+      "import": "./dist/bytes.js"
+    },
+    "./crypto": {
+      "types": "./dist/crypto.d.ts",
+      "import": "./dist/crypto.js"
+    },
+    "./verify": {
+      "types": "./dist/verify.d.ts",
+      "import": "./dist/verify.js"
+    },
+    "./http": {
+      "types": "./dist/http.d.ts",
+      "import": "./dist/http.js"
+    },
+    "./session": {
+      "types": "./dist/session.d.ts",
+      "import": "./dist/session.js"
+    },
+    "./rate-limit": {
+      "types": "./dist/rate-limit.d.ts",
+      "import": "./dist/rate-limit.js"
+    },
+    "./rate-limiter-do": {
+      "types": "./dist/rate-limiter-do.d.ts",
+      "import": "./dist/rate-limiter-do.js"
+    },
+    "./i18n": {
+      "types": "./dist/i18n.d.ts",
+      "import": "./dist/i18n.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/*.js",
+    "dist/*.d.ts",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "rm -f dist/*.js dist/*.d.ts && tsc -p tsconfig.build.json && node scripts/fix-declarations.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@bsv/sdk": "^1.8.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  }
+}
